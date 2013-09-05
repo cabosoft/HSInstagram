@@ -30,6 +30,8 @@
            withAccessToken:(NSString *)accessToken
                      block:(void (^)(NSArray *records))block
 {
+	assert(accessToken.length > 0);
+
     NSDictionary* params = accessToken.length > 0 ? [NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] : nil;
     NSString* path = [NSString stringWithFormat:kUserMediaRecentEndpoint, userId];
     

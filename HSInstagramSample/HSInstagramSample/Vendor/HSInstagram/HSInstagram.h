@@ -10,8 +10,6 @@
 #import "AFHTTPClient.h"
 
 extern NSString * const kInstagramBaseURLString;
-extern NSString * const kClientId;
-extern NSString * const kRedirectUrl;
 
 // Endpoints
 extern NSString * const kLocationsEndpoint;
@@ -25,5 +23,10 @@ extern NSString * const kAuthenticationEndpoint;
 + (HSInstagram *)sharedClient;
 - (id)initWithBaseURL:(NSURL *)url;
 
+//Include your client id from instagr.am
+@property (nonatomic, strong) NSString* clientId;
+
+//Include your redirect uri from instagr.am
+@property (nonatomic, strong) NSString* redirectUri;
 
 @end

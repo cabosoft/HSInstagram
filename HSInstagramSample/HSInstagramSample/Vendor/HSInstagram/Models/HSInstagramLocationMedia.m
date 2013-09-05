@@ -28,7 +28,9 @@
 
 + (void)getLocationMediaWithId:(NSString*)locationId block:(void (^)(NSArray *records))block
 {
-    NSDictionary* params = [NSDictionary dictionaryWithObject:kClientId forKey:@"client_id"];
+	assert([HSInstagram sharedClient].clientId.length > 0);
+
+    NSDictionary* params = [NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
     NSString* path = [NSString stringWithFormat:kLocationsMediaRecentEndpoint, locationId];
     
     [[HSInstagram sharedClient] getPath:path

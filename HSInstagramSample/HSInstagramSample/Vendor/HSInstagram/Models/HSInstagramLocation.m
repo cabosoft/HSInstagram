@@ -33,6 +33,8 @@
               withAccessToken:(NSString*)accessToken
                         block:(void (^)(NSArray *records))block
 {
+	assert(accessToken.length > 0);
+
     NSString* lat = [NSString stringWithFormat:@"%3.7f", coord.latitude];
     NSString* lon = [NSString stringWithFormat:@"%3.7f", coord.longitude];
     
