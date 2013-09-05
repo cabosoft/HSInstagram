@@ -14,9 +14,9 @@ NSString * const kInstagramBaseURLString = @"https://api.instagram.com/v1/";
 
 // Endpoints
 NSString * const kLocationsEndpoint = @"locations/search";
-NSString * const kLocationsMediaRecentEndpoint = @"locations/%@/media/recent";
-NSString * const kUserMediaRecentEndpoint = @"users/%@/media/recent";
-NSString * const kSerachMediaRecentEndpoint = @"media/search?lat=%f&lng=%f&distance=%d&count=50&max_timestamp=1375574400";
+NSString * const kLocationsMediaRecentEndpoint = @"locations/%@/media/recent?count=%d";
+NSString * const kUserMediaRecentEndpoint = @"users/%@/media/recent?count=%d";
+NSString * const kSerachMediaRecentEndpoint = @"media/search?lat=%f&lng=%f&distance=%d&count=%d";
 NSString * const kAuthenticationEndpoint = 
     @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token";
 

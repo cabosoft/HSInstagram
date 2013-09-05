@@ -10,13 +10,17 @@
 
 @interface HSInstagramUserMedia : NSObject
 
-@property (nonatomic, strong) NSString* thumbnailUrl;
-@property (nonatomic, strong) NSString* standardUrl;
-@property (nonatomic, assign) NSUInteger likes;
-
+// On success returns instagram's defualt result count (20 or less) of HSInstagramMediaResult objects
+// Requires an accessToken.
 + (void)getUserMediaWithId:(NSString*)userId
            withAccessToken:(NSString*)accessToken
                      block:(void (^)(NSArray *records))block;
 
+// On success returns 'count' (or less) of HSInstagramMediaResult objects
+// Authorized call - requires an accessToken.
++ (void)getUserMediaWithId:(NSString*)userId
+			photoCount:(int) count
+           		withAccessToken:(NSString*)accessToken
+                     block:(void (^)(NSArray *records))block;
 
 @end

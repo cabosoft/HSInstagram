@@ -7,31 +7,31 @@
 //
 
 #import "HSInstagramLocationMedia.h"
+#import "HSInstagramMediaResult.h"
 #import "HSInstagram.h"
 
 @implementation HSInstagramLocationMedia
 
-@synthesize thumbnailUrl = _thumbnailUrl;
-@synthesize standardUrl = _standardUrl;
-@synthesize likes = _likes;
-
-- (id)initWithAttributes:(NSDictionary *)attributes {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    self.thumbnailUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"thumbnail"] valueForKeyPath:@"url"];
-    self.standardUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"standard_resolution"] valueForKeyPath:@"url"];
-    self.likes = [[[attributes objectForKey:@"likes"] valueForKey:@"count"] integerValue];
-    return self;
++ (void)getLocationMediaWithId:(NSString*)locationId
+			   withAccessToken:(NSString*)accessToken
+						 block:(void (^)(NSArray *records))block
+{
+	[HSInstagramLocationMedia getLocationMediaWithId:locationId photoCount:0 withAccessToken:accessToken block:block];
 }
 
-+ (void)getLocationMediaWithId:(NSString*)locationId block:(void (^)(NSArray *records))block
+
++ (void)getLocationMediaWithId:(NSString*)locationId
+					photoCount:(int) count
+			   withAccessToken:(NSString*)accessToken
+						 block:(void (^)(NSArray *records))block
 {
 	assert([HSInstagram sharedClient].clientId.length > 0);
+	
+    NSDictionary* params = (accessToken.length > 0) ?
+		[NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] :
+			[NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
 
-    NSDictionary* params = [NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
-    NSString* path = [NSString stringWithFormat:kLocationsMediaRecentEndpoint, locationId];
+    NSString* path = [NSString stringWithFormat:kLocationsMediaRecentEndpoint, locationId, count];
     
     [[HSInstagram sharedClient] getPath:path
                              parameters:params
@@ -39,7 +39,7 @@
                                     NSMutableArray *mutableRecords = [NSMutableArray array];
                                     NSArray* data = [responseObject objectForKey:@"data"];
                                     for (NSDictionary* obj in data) {
-                                        HSInstagramLocationMedia* media = [[HSInstagramLocationMedia alloc] initWithAttributes:obj];
+                                        HSInstagramMediaResult* media = [[HSInstagramMediaResult alloc] initWithAttributes:obj];
                                         [mutableRecords addObject:media];
                                     }
                                     if (block) {

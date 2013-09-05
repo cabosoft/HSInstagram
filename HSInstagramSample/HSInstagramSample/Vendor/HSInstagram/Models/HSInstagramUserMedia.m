@@ -7,33 +7,27 @@
 //
 
 #import "HSInstagramUserMedia.h"
+#import "HSInstagramMediaResult.h"
 #import "HSInstagram.h"
 
 @implementation HSInstagramUserMedia
-
-@synthesize thumbnailUrl = _thumbnailUrl;
-@synthesize standardUrl = _standardUrl;
-@synthesize likes = _likes;
-
-- (id)initWithAttributes:(NSDictionary *)attributes {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    self.thumbnailUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"thumbnail"] valueForKeyPath:@"url"];
-    self.standardUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"standard_resolution"] valueForKeyPath:@"url"];
-    self.likes = [[[attributes objectForKey:@"likes"] valueForKey:@"count"] integerValue];
-    return self;
-}
 
 + (void)getUserMediaWithId:(NSString*)userId
            withAccessToken:(NSString *)accessToken
                      block:(void (^)(NSArray *records))block
 {
+	[HSInstagramUserMedia getUserMediaWithId:userId photoCount:0 withAccessToken:accessToken block:block];
+}
+
++ (void)getUserMediaWithId:(NSString*)userId
+				photoCount:(int) count
+				withAccessToken:(NSString*)accessToken
+				block:(void (^)(NSArray *records))block
+{
 	assert(accessToken.length > 0);
 
-    NSDictionary* params = accessToken.length > 0 ? [NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] : nil;
-    NSString* path = [NSString stringWithFormat:kUserMediaRecentEndpoint, userId];
+    NSDictionary* params = [NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"];
+    NSString* path = [NSString stringWithFormat:kUserMediaRecentEndpoint, userId, count];
     
     [[HSInstagram sharedClient] getPath:path
                              parameters:params
@@ -41,7 +35,7 @@
                                     NSMutableArray *mutableRecords = [NSMutableArray array];
                                     NSArray* data = [responseObject objectForKey:@"data"];
                                     for (NSDictionary* obj in data) {
-                                        HSInstagramUserMedia* media = [[HSInstagramUserMedia alloc] initWithAttributes:obj];
+                                        HSInstagramMediaResult* media = [[HSInstagramMediaResult alloc] initWithAttributes:obj];
                                         [mutableRecords addObject:media];
                                     }
                                     if (block) {
@@ -55,6 +49,4 @@
                                     }
                                 }];
 }
-
-
 @end

@@ -7,31 +7,32 @@
 //
 
 #import "HSInstagramSearchMedia.h"
+#import "HSInstagramMediaResult.h"
 #import "HSInstagram.h"
 
 @implementation HSInstagramSearchMedia
 
-@synthesize thumbnailUrl = _thumbnailUrl;
-@synthesize standardUrl = _standardUrl;
-@synthesize likes = _likes;
-
-- (id)initWithAttributes:(NSDictionary *)attributes {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    self.thumbnailUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"thumbnail"] valueForKeyPath:@"url"];
-    self.standardUrl = [[[attributes valueForKeyPath:@"images"] valueForKeyPath:@"standard_resolution"] valueForKeyPath:@"url"];
-    self.likes = [[[attributes objectForKey:@"likes"] valueForKey:@"count"] integerValue];
-    return self;
++ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
+				andDistance:(int) meters
+					withAccessToken:(NSString*)accessToken
+					  block:(void (^)(NSArray *records))block
+{
+	[HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:meters photoCount:0 withAccessToken:accessToken block:block];
 }
 
-+ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord andDistance:(int) meters block:(void (^)(NSArray *records))block
++ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
+				andDistance:(int) meters
+				 photoCount:(int) count
+					withAccessToken:(NSString*)accessToken
+					  block:(void (^)(NSArray *records))block
 {
 	assert([HSInstagram sharedClient].clientId.length > 0);
 	
-    NSDictionary* params = [NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
-    NSString* path = [NSString stringWithFormat:kSerachMediaRecentEndpoint, coord.latitude, coord.longitude, meters];
+    NSDictionary* params = (accessToken.length > 0) ?
+			[NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] : 
+				[NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
+	
+    NSString* path = [NSString stringWithFormat:kSerachMediaRecentEndpoint, coord.latitude, coord.longitude, meters, count];
     
     [[HSInstagram sharedClient] getPath:path
                              parameters:params
@@ -39,7 +40,7 @@
                                     NSMutableArray *mutableRecords = [NSMutableArray array];
                                     NSArray* data = [responseObject objectForKey:@"data"];
                                     for (NSDictionary* obj in data) {
-                                        HSInstagramSearchMedia* media = [[HSInstagramSearchMedia alloc] initWithAttributes:obj];
+                                        HSInstagramMediaResult* media = [[HSInstagramMediaResult alloc] initWithAttributes:obj];
                                         [mutableRecords addObject:media];
                                     }
                                     if (block) {
