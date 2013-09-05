@@ -9,19 +9,30 @@
 #import "AppDelegate.h"
 #import "HSMyMediaViewController.h"
 
+#warning Include your client id from instagr.am
+#define kInstagramClientId				@"";
+
+#warning Include your redirect uri
+#define kInstagramRedirectURI			@"";
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+ 	
+	[HSInstagram sharedClient].clientId = kInstagramClientId;
+	[HSInstagram sharedClient].redirectUri = kInstagramRedirectURI;
+
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     HSMyMediaViewController* controller = [[HSMyMediaViewController alloc] init];
     UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = navigation;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 

@@ -9,6 +9,7 @@
 #import "HSMediaGridViewController.h"
 #import "HSInstagramLocationMedia.h"
 #import "HSImageViewController.h"
+#import "HSInstagramMediaResult.h"
 
 const NSInteger klocationThumbnailWidth = 80;
 const NSInteger klocationThumbnailHeight = 80;
@@ -65,7 +66,7 @@ const NSInteger klocationImagesPerRow = 4;
     self.gridScrollView.contentSize = self.view.bounds.size;
     [self.view addSubview:self.gridScrollView];
     
-    [HSInstagramLocationMedia getLocationMediaWithId:self.locationId block:^(NSArray *records) {
+    [HSInstagramLocationMedia getLocationMediaWithId:self.locationId withAccessToken:nil block:^(NSArray *records) {
         self.images = records;
         int item = 0, row = 0, col = 0;
         for (NSDictionary* image in records) {
@@ -122,7 +123,7 @@ const NSInteger klocationImagesPerRow = 4;
 - (void)loadImages
 {
     int item = 0;
-    for (HSInstagramLocationMedia* media in self.images) {
+    for (HSInstagramMediaResult* media in self.images) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
             NSString* thumbnailUrl = media.thumbnailUrl;
             NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:thumbnailUrl]];

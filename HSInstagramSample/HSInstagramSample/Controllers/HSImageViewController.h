@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class HSInstagramLocationMedia;
+@class HSInstagramMediaResult;
 
 @interface HSImageViewController : UIViewController
 
 @property (nonatomic, strong) UIImageView* imageView;
-@property (nonatomic, strong) HSInstagramLocationMedia* media;
+@property (nonatomic, strong) HSInstagramMediaResult* media;
 
-- (id)initWithMedia:(HSInstagramLocationMedia*)media;
+- (id)initWithMedia:(HSInstagramMediaResult*)media;
 
 @end

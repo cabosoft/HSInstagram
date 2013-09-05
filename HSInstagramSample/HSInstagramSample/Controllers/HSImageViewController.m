@@ -8,6 +8,7 @@
 
 #import "HSImageViewController.h"
 #import "HSInstagramLocationMedia.h"
+#import "HSInstagramMediaResult.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation HSImageViewController

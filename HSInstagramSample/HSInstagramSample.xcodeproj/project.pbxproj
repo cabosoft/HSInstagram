@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8EC392C17D926EB005F369F /* HSInstagramMediaResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EC392917D926EB005F369F /* HSInstagramMediaResult.m */; };
+		B8EC392D17D926EB005F369F /* HSInstagramSearchMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EC392B17D926EB005F369F /* HSInstagramSearchMedia.m */; };
 		F823CBBE17552B3E00D3073D /* HSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F823CBBD17552B3D00D3073D /* HSConstants.m */; };
 		F835D79E15509A840041404D /* HSMyMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F835D79D15509A840041404D /* HSMyMediaViewController.m */; };
 		F8402EF414CA8FB6000D3F64 /* HSLocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = F8402EF314CA8FB6000D3F64 /* HSLocationService.m */; };
@@ -39,6 +41,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B8EC392817D926EB005F369F /* HSInstagramMediaResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSInstagramMediaResult.h; sourceTree = "<group>"; };
+		B8EC392917D926EB005F369F /* HSInstagramMediaResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSInstagramMediaResult.m; sourceTree = "<group>"; };
+		B8EC392A17D926EB005F369F /* HSInstagramSearchMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSInstagramSearchMedia.h; sourceTree = "<group>"; };
+		B8EC392B17D926EB005F369F /* HSInstagramSearchMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSInstagramSearchMedia.m; sourceTree = "<group>"; };
 		F823CBBC17552B3D00D3073D /* HSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSConstants.h; sourceTree = "<group>"; };
 		F823CBBD17552B3D00D3073D /* HSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSConstants.m; sourceTree = "<group>"; };
 		F835D79C15509A840041404D /* HSMyMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMyMediaViewController.h; sourceTree = "<group>"; };
@@ -233,6 +239,10 @@
 				F88E402414C9641D005B41C7 /* HSInstagramLocation.m */,
 				F8402F0014CA9B14000D3F64 /* HSInstagramLocationMedia.h */,
 				F8402F0114CA9B14000D3F64 /* HSInstagramLocationMedia.m */,
+				B8EC392817D926EB005F369F /* HSInstagramMediaResult.h */,
+				B8EC392917D926EB005F369F /* HSInstagramMediaResult.m */,
+				B8EC392A17D926EB005F369F /* HSInstagramSearchMedia.h */,
+				B8EC392B17D926EB005F369F /* HSInstagramSearchMedia.m */,
 				F87CAFE31550BD1F00547D4D /* HSInstagramUserMedia.h */,
 				F87CAFE41550BD1F00547D4D /* HSInstagramUserMedia.m */,
 			);
@@ -340,6 +350,8 @@
 				F835D79E15509A840041404D /* HSMyMediaViewController.m in Sources */,
 				F87CAFE51550BD1F00547D4D /* HSInstagramUserMedia.m in Sources */,
 				F823CBBE17552B3E00D3073D /* HSConstants.m in Sources */,
+				B8EC392C17D926EB005F369F /* HSInstagramMediaResult.m in Sources */,
+				B8EC392D17D926EB005F369F /* HSInstagramSearchMedia.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

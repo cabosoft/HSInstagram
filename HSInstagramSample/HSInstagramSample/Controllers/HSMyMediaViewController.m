@@ -11,6 +11,7 @@
 #import "HSImageViewController.h"
 #import "HSLocationsTableViewController.h"
 #import "HSInstagramSearchMedia.h"
+#import "HSInstagramMediaResult.h"
 
 const NSInteger kthumbnailWidth = 80;
 const NSInteger kthumbnailHeight = 80;
@@ -59,9 +60,12 @@ const NSInteger kImagesPerRow = 4;
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     self.webView.delegate = self;
-    NSURLRequest* request = 
-    [NSURLRequest requestWithURL:[NSURL URLWithString:
-                                  [NSString stringWithFormat:kAuthenticationEndpoint, kClientId, kRedirectUrl]]];
+	
+	NSString* clientId = [HSInstagram sharedClient].clientId;
+	NSString* redirectUrl = [HSInstagram sharedClient].redirectUri;
+	
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:
+                                  [NSString stringWithFormat:kAuthenticationEndpoint, clientId, redirectUrl]]];
     [self.webView loadRequest:request];
     [self.view addSubview:self.webView];
     
@@ -126,7 +130,7 @@ const NSInteger kImagesPerRow = 4;
     coord.longitude = -112.973758;
 
 //    [HSInstagramUserMedia getUserMediaWithId:@"365120269" withAccessToken:self.accessToken block:^(NSArray *records)
-    [HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:5000 block:^(NSArray *records)
+    [HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:5000 withAccessToken:self.accessToken block:^(NSArray *records)
     {
         self.images = records;
         int item = 0, row = 0, col = 0;
@@ -153,7 +157,7 @@ const NSInteger kImagesPerRow = 4;
 {
     int item = 0;
 
-    for (HSInstagramUserMedia* media in self.images) {
+    for (HSInstagramMediaResult* media in self.images) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
             NSString* thumbnailUrl = media.thumbnailUrl;
             NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:thumbnailUrl]];
