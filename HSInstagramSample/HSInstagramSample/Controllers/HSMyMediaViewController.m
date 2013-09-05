@@ -10,6 +10,7 @@
 #import "HSInstagramUserMedia.h"
 #import "HSImageViewController.h"
 #import "HSLocationsTableViewController.h"
+#import "HSInstagramSearchMedia.h"
 
 const NSInteger kthumbnailWidth = 80;
 const NSInteger kthumbnailHeight = 80;
@@ -120,7 +121,13 @@ const NSInteger kImagesPerRow = 4;
 
 - (void)requestImages
 {
-    [HSInstagramUserMedia getUserMediaWithId:@"self" withAccessToken:self.accessToken block:^(NSArray *records) {
+    CLLocationCoordinate2D coord;
+    coord.latitude = 37.2184989;
+    coord.longitude = -112.973758;
+
+//    [HSInstagramUserMedia getUserMediaWithId:@"365120269" withAccessToken:self.accessToken block:^(NSArray *records)
+    [HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:5000 block:^(NSArray *records)
+    {
         self.images = records;
         int item = 0, row = 0, col = 0;
         for (NSDictionary* image in records) {

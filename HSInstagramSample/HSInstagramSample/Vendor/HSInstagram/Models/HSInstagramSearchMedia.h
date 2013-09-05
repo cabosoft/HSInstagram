@@ -1,5 +1,5 @@
 //
-//  HSInstagramLocationMedia.h
+//  HSInstagramSearchMedia.h
 //  HSInstagramSample
 //
 //  Created by Harminder Sandhu on 12-01-20.
@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface HSInstagramLocationMedia : NSObject
+@interface HSInstagramSearchMedia : NSObject
 
 @property (nonatomic, strong) NSString* thumbnailUrl;
 @property (nonatomic, strong) NSString* standardUrl;
 @property (nonatomic, assign) NSUInteger likes;
 
-+ (void)getLocationMediaWithId:(NSString*)locationId block:(void (^)(NSArray *records))block;
++ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord andDistance:(int) meters block:(void (^)(NSArray *records))block;
 
 @end

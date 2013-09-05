@@ -1,15 +1,15 @@
 //
-//  HSInstagramUserMedia.m
+//  HSInstagramSearchMedia.m
 //  HSInstagramSample
 //
-//  Created by Harminder Sandhu on 12-05-01.
+//  Created by Harminder Sandhu on 12-01-20.
 //  Copyright (c) 2012 Pushbits. All rights reserved.
 //
 
-#import "HSInstagramUserMedia.h"
+#import "HSInstagramSearchMedia.h"
 #import "HSInstagram.h"
 
-@implementation HSInstagramUserMedia
+@implementation HSInstagramSearchMedia
 
 @synthesize thumbnailUrl = _thumbnailUrl;
 @synthesize standardUrl = _standardUrl;
@@ -26,12 +26,10 @@
     return self;
 }
 
-+ (void)getUserMediaWithId:(NSString*)userId
-           withAccessToken:(NSString *)accessToken
-                     block:(void (^)(NSArray *records))block
++ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord andDistance:(int) meters block:(void (^)(NSArray *records))block
 {
-    NSDictionary* params = accessToken.length > 0 ? [NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] : nil;
-    NSString* path = [NSString stringWithFormat:kUserMediaRecentEndpoint, userId];
+    NSDictionary* params = [NSDictionary dictionaryWithObject:kClientId forKey:@"client_id"];
+    NSString* path = [NSString stringWithFormat:kSerachMediaRecentEndpoint, coord.latitude, coord.longitude, meters];
     
     [[HSInstagram sharedClient] getPath:path
                              parameters:params
@@ -39,7 +37,7 @@
                                     NSMutableArray *mutableRecords = [NSMutableArray array];
                                     NSArray* data = [responseObject objectForKey:@"data"];
                                     for (NSDictionary* obj in data) {
-                                        HSInstagramUserMedia* media = [[HSInstagramUserMedia alloc] initWithAttributes:obj];
+                                        HSInstagramSearchMedia* media = [[HSInstagramSearchMedia alloc] initWithAttributes:obj];
                                         [mutableRecords addObject:media];
                                     }
                                     if (block) {
@@ -53,6 +51,5 @@
                                     }
                                 }];
 }
-
 
 @end

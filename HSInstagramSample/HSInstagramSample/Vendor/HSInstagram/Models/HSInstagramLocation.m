@@ -7,6 +7,7 @@
 //
 
 #import "HSInstagramLocation.h"
+#import "HSInstagram.h"
 
 @implementation HSInstagramLocation
 

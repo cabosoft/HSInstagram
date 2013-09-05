@@ -17,11 +17,13 @@ extern NSString * const kRedirectUrl;
 extern NSString * const kLocationsEndpoint;
 extern NSString * const kLocationsMediaRecentEndpoint;
 extern NSString * const kUserMediaRecentEndpoint;
+extern NSString * const kSerachMediaRecentEndpoint;
 extern NSString * const kAuthenticationEndpoint;
 
 @interface HSInstagram : AFHTTPClient
 
 + (HSInstagram *)sharedClient;
 - (id)initWithBaseURL:(NSURL *)url;
+
 
 @end

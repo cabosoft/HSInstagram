@@ -54,7 +54,10 @@
                                                       object:nil 
                                                        queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notif) {
         [weakSelf.locationService stop];
-        CLLocationCoordinate2D coord = weakSelf.locationService.currentLocation.coordinate;
+        CLLocationCoordinate2D coord; //= weakSelf.locationService.currentLocation.coordinate;
+                                                           coord.latitude = 37.20016666667;
+                                                           coord.longitude = -112.98716666667;
+                                                           
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
                                                            
         [HSInstagramLocation getLocationsWithCoord:coord

@@ -12,16 +12,17 @@
 
 NSString * const kInstagramBaseURLString = @"https://api.instagram.com/v1/";
 #warning Include your client id from instagr.am
-NSString * const kClientId = @"INSTAGRAM-CLIENT-KEY";
+NSString * const kClientId = @"a42eaed995a340cb9be4101377981256";
 
 #warning Include your redirect uri
-NSString * const kRedirectUrl = @"http://example.com";
+NSString * const kRedirectUrl = @"http://cabosoft.com/instagramconnect";
 
 
 // Endpoints
 NSString * const kLocationsEndpoint = @"locations/search";
 NSString * const kLocationsMediaRecentEndpoint = @"locations/%@/media/recent";
 NSString * const kUserMediaRecentEndpoint = @"users/%@/media/recent";
+NSString * const kSerachMediaRecentEndpoint = @"media/search?lat=%f&lng=%f&distance=%d&count=50&max_timestamp=1375574400";
 NSString * const kAuthenticationEndpoint = 
     @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token";
 
