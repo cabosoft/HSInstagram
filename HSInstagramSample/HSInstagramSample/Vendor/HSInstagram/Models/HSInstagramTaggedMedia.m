@@ -1,27 +1,25 @@
 //
-//  HSInstagramSearchMedia.m
+//  HSInstagramTaggedMedia.m
 //  HSInstagramSample
 //
 //  Created by Harminder Sandhu on 12-01-20.
 //  Copyright (c) 2012 Pushbits. All rights reserved.
 //
 
-#import "HSInstagramSearchMedia.h"
+#import "HSInstagramTaggedMedia.h"
 #import "HSInstagramMediaResult.h"
 #import "HSInstagram.h"
 
-@implementation HSInstagramSearchMedia
+@implementation HSInstagramTaggedMedia
 
-+ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
-				andDistance:(int) meters
++ (void)getMediaWithTag:(NSString*)tag
 					withAccessToken:(NSString*)accessToken
 					  block:(void (^)(NSArray *records))block
 {
-	[HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:meters photoCount:0 withAccessToken:accessToken block:block];
+	[HSInstagramTaggedMedia getMediaWithTag:tag photoCount:0 withAccessToken:accessToken block:block];
 }
 
-+ (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
-				andDistance:(int) meters
++ (void)getMediaWithTag:(NSString*)tag
 				 photoCount:(int) count
 					withAccessToken:(NSString*)accessToken
 					  block:(void (^)(NSArray *records))block
@@ -32,7 +30,7 @@
 			[NSDictionary dictionaryWithObject:accessToken forKey:@"access_token"] : 
 				[NSDictionary dictionaryWithObject:[HSInstagram sharedClient].clientId forKey:@"client_id"];
 	
-    NSString* path = [NSString stringWithFormat:kSearchMediaRecentEndpoint, coord.latitude, coord.longitude, meters, count];
+    NSString* path = [NSString stringWithFormat:kTaggedMediaRecentEndpoint, tag, count];
     
     [[HSInstagram sharedClient] getPath:path
                              parameters:params

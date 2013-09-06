@@ -15,7 +15,8 @@ extern NSString * const kInstagramBaseURLString;
 extern NSString * const kLocationsEndpoint;
 extern NSString * const kLocationsMediaRecentEndpoint;
 extern NSString * const kUserMediaRecentEndpoint;
-extern NSString * const kSerachMediaRecentEndpoint;
+extern NSString * const kSearchMediaRecentEndpoint;
+extern NSString * const kTaggedMediaRecentEndpoint;
 extern NSString * const kAuthenticationEndpoint;
 
 @interface HSInstagram : AFHTTPClient
