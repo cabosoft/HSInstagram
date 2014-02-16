@@ -13,7 +13,7 @@
 @implementation HSInstagramSearchMedia
 
 + (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
-				andDistance:(int) meters
+				andDistance:(NSUInteger) meters
 					withAccessToken:(NSString*)accessToken
 					  block:(void (^)(NSArray *records))block
 {
@@ -21,8 +21,8 @@
 }
 
 + (void)getSearchMediaCoord:(CLLocationCoordinate2D)coord
-				andDistance:(int) meters
-				 photoCount:(int) count
+				andDistance:(NSUInteger) meters
+				 photoCount:(NSUInteger) count
 					withAccessToken:(NSString*)accessToken
 					  block:(void (^)(NSArray *records))block
 {
