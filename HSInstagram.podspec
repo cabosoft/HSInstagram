@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/cabosoft/HSInstagram"
   s.author       = 'Harminder Sandhu'
   s.source       = { :git => "https://github.com/cabosoft/HSInstagram.git", :branch => 'master' }
-  s.source_files = "HSInstagramSample/HSInstagramSample/Vendor/HSInstagram/*.{h,m,mm}", "SInstagramSample/HSInstagramSample/Vendor/HSInstagram/Models/*.{h,m,mm}"
+  s.source_files = "HSInstagramSample/HSInstagramSample/Vendor/HSInstagram/*.{h,m,mm}", "HSInstagramSample/HSInstagramSample/Vendor/HSInstagram/Models/*.{h,m,mm}"
   s.requires_arc = true
   s.dependency 'AFNetworking', '~> 2.3.1'
 end
