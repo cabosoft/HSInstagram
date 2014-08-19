@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.source_files = "HSInstagramSample/HSInstagramSample/Vendor/HSInstagram/*.{h,m,mm}", "HSInstagramSample/HSInstagramSample/Vendor/HSInstagram/Models/*.{h,m,mm}"
   s.requires_arc = true
   s.dependency 'AFNetworking', '~> 2.3.1'
+  s.dependency 'AFContentRequestOperations', '= 2.0.0'
 end
