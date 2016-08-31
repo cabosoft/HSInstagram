@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFHTTPClient.h"
+@import AFNetworking;
 
 extern NSString * const kInstagramBaseURLString;
 
@@ -19,7 +19,7 @@ extern NSString * const kSearchMediaRecentEndpoint;
 extern NSString * const kTaggedMediaRecentEndpoint;
 extern NSString * const kAuthenticationEndpoint;
 
-@interface HSInstagram : AFHTTPClient
+@interface HSInstagram : AFHTTPSessionManager
 
 + (HSInstagram *)sharedClient;
 - (id)initWithBaseURL:(NSURL *)url;

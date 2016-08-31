@@ -47,9 +47,9 @@
                                                                 @"access_token",
                                                                 nil]];
     
-    [[HSInstagram sharedClient] getPath:kLocationsEndpoint
+    [[HSInstagram sharedClient] GET:kLocationsEndpoint
                              parameters:params
-                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                success:^(NSURLSessionDataTask *task, id responseObject) {
                                     NSMutableArray *mutableRecords = [NSMutableArray array];
                                     NSArray* data = [responseObject objectForKey:@"data"];
                                     for (NSDictionary* obj in data) {
@@ -60,7 +60,7 @@
                                         block([NSArray arrayWithArray:mutableRecords]);
                                     }
                                 }
-                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                failure:^(NSURLSessionDataTask *task, NSError *error) {
                                     NSLog(@"error: %@", error.localizedDescription);
                                     if (block) {
                                         block([NSArray array]);

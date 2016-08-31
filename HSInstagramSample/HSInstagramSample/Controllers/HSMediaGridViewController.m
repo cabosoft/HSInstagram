@@ -69,7 +69,7 @@ const NSInteger klocationImagesPerRow = 4;
     [HSInstagramLocationMedia getLocationMediaWithId:self.locationId withAccessToken:nil block:^(NSArray *records) {
         self.images = records;
         int item = 0, row = 0, col = 0;
-        for (NSDictionary* image in records) {
+        for (NSDictionary* __unused image in records) {
             UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(col*klocationThumbnailWidth,
                                                                           row*klocationThumbnailHeight,
                                                                           klocationThumbnailWidth,
@@ -93,7 +93,6 @@ const NSInteger klocationImagesPerRow = 4;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 

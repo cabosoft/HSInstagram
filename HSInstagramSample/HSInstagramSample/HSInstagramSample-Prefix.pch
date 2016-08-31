@@ -13,5 +13,4 @@
     #import <Foundation/Foundation.h>
     #import "Notifications.h"
     #import "HSConstants.h"
-    #import "HSInstagram.h"
 #endif

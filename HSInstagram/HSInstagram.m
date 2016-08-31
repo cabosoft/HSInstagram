@@ -8,8 +8,6 @@
 
 #import "HSInstagram.h"
 
-#import "AFJSONRequestOperation.h"
-
 NSString * const kInstagramBaseURLString = @"https://api.instagram.com/v1/";
 
 // Endpoints
@@ -20,7 +18,7 @@ NSString * const kSearchMediaRecentEndpoint = @"media/search?lat=%f&lng=%f&dista
 NSString * const kTaggedMediaRecentEndpoint = @"tags/%@/media/recent?count=%d";
 
 NSString * const kAuthenticationEndpoint =
-    @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token";
+    @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=public_content";
 
 
 @interface HSInstagram ()
@@ -52,9 +50,9 @@ NSString * const kAuthenticationEndpoint =
         return nil;
     }
     
-    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
-    [self setDefaultHeader:@"Accept" value:@"application/json"];
-    
+//    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
+//    [self setDefaultHeader:@"Accept" value:@"application/json"];
+	
     return self;
 }
 

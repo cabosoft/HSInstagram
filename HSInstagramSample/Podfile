@@ -1,0 +1,9 @@
+project 'HSInstagramSample.xcodeproj'
+
+use_frameworks!
+
+target 'HSInstagramSample' do
+	platform :ios, '8.0'
+	pod 'HSInstagram', :path => '../'
+
+end

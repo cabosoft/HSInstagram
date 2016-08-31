@@ -7,11 +7,9 @@
 //
 
 #import "HSMyMediaViewController.h"
-#import "HSInstagramUserMedia.h"
 #import "HSImageViewController.h"
 #import "HSLocationsTableViewController.h"
-#import "HSInstagramSearchMedia.h"
-#import "HSInstagramMediaResult.h"
+@import HSInstagram;
 
 const NSInteger kthumbnailWidth = 80;
 const NSInteger kthumbnailHeight = 80;
@@ -87,7 +85,6 @@ const NSInteger kImagesPerRow = 4;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
@@ -113,7 +110,7 @@ const NSInteger kImagesPerRow = 4;
         [defaults setObject:self.accessToken forKey:kUserAccessTokenKey];
         [defaults synchronize];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"locations"
-                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                  style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(locationsAction:)];
     }
@@ -125,16 +122,16 @@ const NSInteger kImagesPerRow = 4;
 
 - (void)requestImages
 {
-    CLLocationCoordinate2D coord;
-    coord.latitude = 37.2184989;
-    coord.longitude = -112.973758;
+//    CLLocationCoordinate2D coord;
+//    coord.latitude = 37.2184989;
+//    coord.longitude = -112.973758;
 
-//    [HSInstagramUserMedia getUserMediaWithId:@"365120269" withAccessToken:self.accessToken block:^(NSArray *records)
-    [HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:5000 withAccessToken:self.accessToken block:^(NSArray *records)
+    [HSInstagramUserMedia getUserMediaWithId:@"zionnps" withAccessToken:self.accessToken block:^(NSArray *records)
+//	[HSInstagramSearchMedia getSearchMediaCoord:coord andDistance:5000 photoCount:1000 withAccessToken:self.accessToken block:^(NSArray *records)
     {
         self.images = records;
         int item = 0, row = 0, col = 0;
-        for (NSDictionary* image in records) {
+        for (NSDictionary* __unused image in records) {
             UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(col*kthumbnailWidth,
                                                                           row*kthumbnailHeight,
                                                                           kthumbnailWidth,

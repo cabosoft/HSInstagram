@@ -25,7 +25,7 @@
     return self;
 }
 
-- (id)initWithMedia:(HSInstagramLocationMedia *)media
+- (id)initWithMedia:(HSInstagramMediaResult *)media
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
@@ -68,8 +68,8 @@
             
             // Add some 'likes' meta data to the photo view
             NSUInteger likes = self.media.likes;
-            NSString* text = [NSString stringWithFormat: @"%d LIKES", likes];
-            CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:10.0]];
+            NSString* text = [NSString stringWithFormat: @"%lu LIKES", (unsigned long)likes];
+            CGSize size = [text sizeWithAttributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:10.0] forKey:NSFontAttributeName]];
             CGRect bounds = self.view.bounds;
             UILabel* likesLabel = [[UILabel alloc] initWithFrame:CGRectMake(bounds.origin.x + 10,
                                                                             bounds.size.height - 50,
@@ -80,7 +80,7 @@
             likesLabel.textColor = [UIColor whiteColor];
             likesLabel.font = [UIFont systemFontOfSize:10.0];
             likesLabel.layer.cornerRadius = 5.0;
-            likesLabel.textAlignment = UITextAlignmentCenter;
+            likesLabel.textAlignment = NSTextAlignmentCenter;
             likesLabel.alpha = 0.0;
             [self.view addSubview:likesLabel];
             
@@ -91,7 +91,6 @@
         });
     });
     
-    self.navigationController.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 }
 

@@ -8,12 +8,10 @@
 
 #import "AppDelegate.h"
 #import "HSMyMediaViewController.h"
+@import HSInstagram;
 
-#warning Include your client id from instagr.am
-#define kInstagramClientId				@"";
-
-#warning Include your redirect uri
-#define kInstagramRedirectURI			@"";
+#define kInstagramClientId				@"41cab0c3cdce4777acf6996ecd665a07";
+#define kInstagramRedirectURI			@"http://cabosoft.com/instagramconnect";
 
 @implementation AppDelegate
 
