@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import AFNetworking;
+#import <AFNetworking/AFNetworking.h>
 
 extern NSString * const kInstagramBaseURLString;
 
